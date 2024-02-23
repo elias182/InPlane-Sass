@@ -1,0 +1,18 @@
+/*3anim*/
+
+.cards{
+    display: grid;
+    justify-items: center;
+    @include grid(1, "1fr 1fr 1fr 1fr");
+    margin-top: 30px;
+  
+    @include responsive(lg){
+      @include grid(1, "1fr 1fr");
+      
+    }
+    @include responsive(md){
+      @include grid(1, "1fr");
+      margin: 0;
+      width: 100vw;
+    }
+  }

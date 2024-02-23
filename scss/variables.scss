@@ -1,0 +1,172 @@
+///
+/// Este archivo contiene variables, mixins y funciones para estilos reutilizables en el proyecto.
+///
+/// @author Elias Mouimi Romero
+/// @version 1.0.0
+///
+
+///
+/// Define los colores utilizados en el proyecto.
+///
+$colors: (
+  fondo: rgb(255, 255, 255),    // Color de fondo predeterminado
+  letra: rgb(1, 45, 1),          // Color de texto predeterminado
+  primary-color: #8cb7d3,        // Color primario
+  submenu-bg: #35361b,           // Color de fondo del submenú
+  iconos: gray,                  // Color de los iconos
+  menu-terc: rgb(223, 223, 223)  // Color del menú secundario
+);
+
+///
+/// Define los tamaños utilizados en el proyecto.
+///
+$sizes: (
+  small: 12px,
+  medium: 16px,
+  large: 24px,
+  fotol: 80vh,   // Altura de las fotos
+  fotow: 80vw    // Ancho de las fotos
+);
+
+///
+/// Define los tamaños de pantalla utilizados para media queries.
+///
+$sizesr: (
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+
+///
+/// Devuelve el tamaño en píxeles correspondiente a un nombre de tamaño predefinido.
+///
+/// @param {String} $size - El nombre del tamaño (por ejemplo, sm, md, lg, xl).
+/// @return {Number} El tamaño en píxeles.
+///
+@function size($size){
+  @return map-get($sizesr, $size);
+}
+
+///
+/// Aplica reglas CSS dentro del contenido a un tamaño de pantalla específico.
+///
+/// @param {String} $size - El tamaño de pantalla (por ejemplo, sm, md, lg, xl).
+///
+@mixin responsive($size: sm) {
+  @media screen and (max-width: size($size)) {
+    @content;
+  }
+}
+
+///
+/// Mixins
+///
+
+///
+/// Establece el color de fondo.
+///
+/// @param {Color} $color - El color de fondo.
+///
+@mixin setBackground($color) {
+  background-color: $color;
+}
+
+///
+/// Establece el color de texto.
+///
+/// @param {Color} $color - El color de texto.
+///
+@mixin setTextColor($color) {
+  color: $color;
+}
+
+///
+/// Establece el tamaño de texto.
+///
+/// @param {Length} $size - El tamaño de texto.
+///
+@mixin setTextSize($size) {
+  font-size: $size;
+}
+
+///
+/// Aplica estilos para botones de detalle.
+///
+@mixin botondetalle() {
+  @include setBackground(map-get($colors, submenu-bg));
+  border: none;
+  @include setTextColor(map-get($colors, fondo));
+  margin-bottom: 10px;
+}
+
+
+
+///
+/// Mixin 'grid' para facilitar la creación de rejillas (grids) en CSS utilizando Sass.
+///
+/// @param {string} $rows - La definición de las filas de la rejilla.
+///                          Debe ser una cadena de valores de altura de fila separados por espacios.
+/// @param {string} [$columns=""] - (Opcional) La definición de las columnas de la rejilla.
+///                                  Debe ser una cadena de valores de ancho de columna separados por espacios.
+///                                  Por defecto, no se definen columnas.
+/// @param {number} [$row-gap=0] - (Opcional) El espacio entre las filas de la rejilla.
+/// @param {number} [$column-gap=0] - (Opcional) El espacio entre las columnas de la rejilla.
+/// @param {number} [$gap=0] - (Opcional) Un atajo para definir el espacio entre filas y columnas de manera uniforme.
+///
+/// @returns {styles} Estilos CSS necesarios para la rejilla definida.
+///
+@mixin grid($rows, $columns: "", $row-gap: 0, $column-gap: 0, $gap: 0) {
+  @if ($columns) {
+    display: grid;
+
+    @if ($gap) {
+      gap: $gap;
+    } @else {
+      row-gap: $row-gap;
+      column-gap: $column-gap;
+    }
+
+    grid-template-rows: $rows;
+    grid-template-columns: unquote($columns);
+  } @else {
+    display: grid;
+
+    @if ($gap) {
+      gap: $gap;
+    } @else {
+      row-gap: $row-gap;
+      column-gap: $column-gap;
+    }
+
+    grid-template-rows: $rows;
+  }
+}
+
+
+///
+/// Funciones
+///
+
+///
+/// Convierte un tamaño en píxeles a rem.
+///
+/// @param {Number} $size - El tamaño en píxeles.
+/// @return {String} El tamaño en rem.
+///
+@function calculateRem($size) {
+  @return #{$size / 16}rem;
+}
+
+
+
+///
+/// Convierte un tamaño en píxeles a em, con un contexto dado.
+///
+/// @param {Number} $size - El tamaño en píxeles.
+/// @param {Number} $context - El tamaño base en píxeles.
+/// @return {String} El tamaño en em.
+///
+@function calculateEm($size, $context) {
+  @return #{$size / $context}em;
+}

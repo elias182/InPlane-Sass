@@ -1,0 +1,37 @@
+/*VILLAS*/
+
+.villas{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: -webkit-fill-available;
+    .villacont{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      width: min-content;
+      width: 80vw;
+      .villa{
+        display: flex;
+        flex-direction: row;
+        margin: 20px;
+  
+        @include responsive(sm){
+          flex-direction: column;
+          width: 70vw;
+        }
+      }
+    }
+  }
+  
+  .ICON{
+    font-size: 5rem;
+    @include setTextColor(map-get($colors, submenu-bg));
+  }
+  .butonvillas{
+    @include setBackground(map-get($colors, submenu-bg));
+    @include setTextColor(map-get($colors, fondo));
+  }
+  
+  

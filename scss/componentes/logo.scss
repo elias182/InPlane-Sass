@@ -1,0 +1,15 @@
+/*LOGOS*/
+
+.logos {
+    @include setTextColor(map-get($colors, fondo));
+    @include setBackground(map-get($colors, submenu-bg));
+    display: flex;
+    flex-wrap: wrap; // Para que los elementos se envuelvan cuando no hay suficiente espacio
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .logo-item {
+    margin: 10px; // Espacio entre las imágenes
+  
+  }

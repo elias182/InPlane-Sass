@@ -1,0 +1,16 @@
+/*CARRUSEL*/
+
+.foto {
+    height: map-get($sizes, fotol);
+    width: 100%;
+    @include responsive(sm){
+      height: 40vh;
+    }
+  }
+  
+  .carousel-inner {
+    height: map-get($sizes, fotol)!important;
+    @include responsive(sm){
+      height: 40vh!important;
+    }
+  }
