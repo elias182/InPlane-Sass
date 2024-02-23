@@ -10,7 +10,7 @@ const replace = require('gulp-replace');
 
 
 function concatenar(){
-    return src("css/css?.css").pipe(concat("style.css")).pipe(dest("css/"));
+    return src("css/css?.css").pipe(concat("styles.css")).pipe(dest("css/"));
 }
 
 function minimizar(){
